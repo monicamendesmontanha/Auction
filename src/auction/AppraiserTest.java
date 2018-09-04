@@ -11,11 +11,12 @@ public class AppraiserTest {
 
         auction.proposes(new Bid(dan, 300.0));
         auction.proposes(new Bid(july, 400.0));
-        auction.proposes(new Bid(rapha, 500.0));
+        auction.proposes(new Bid(rapha, 250.0));
 
         Appraiser auctioneer = new Appraiser();
         auctioneer.evaluates (auction);
 
-        System.out.println(auctioneer.getHigherBid());
+        System.out.println("The higher bid: " + auctioneer.getHigherBid());
+        System.out.println("The lowest bid: " + auctioneer.getLowestBid());
     }
 }
