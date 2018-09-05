@@ -1,11 +1,12 @@
 package auction;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class AppraiserTest {
 
     @Test
-    public void main() {
+    public void mustUnderstandBidsInAscendingOrder() {
         User dan = new User("Dan");
         User july = new User("July");
         User rapha = new User("Rapha");
@@ -19,14 +20,11 @@ public class AppraiserTest {
         Appraiser auctioneer = new Appraiser();
         auctioneer.evaluates (auction);
 
-        System.out.println("The higher bid: " + auctioneer.getHigherBid());
-        System.out.println("The lowest bid: " + auctioneer.getLowestBid());
-
         double expectedHigher = 400;
         double expectedLower = 250;
 
-        System.out.println(expectedHigher == auctioneer.getHigherBid());
-        System.out.println(expectedLower == auctioneer.getLowestBid());
+        Assert.assertEquals(expectedHigher, auctioneer.getHighestBid(), 0.00001);
+        Assert.assertEquals(expectedLower, auctioneer.getLowestBid(), 0.00001);
 
     }
 }
