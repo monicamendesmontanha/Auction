@@ -1,7 +1,8 @@
 package auction;
 
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class AppraiserTest {
 
@@ -23,8 +24,24 @@ public class AppraiserTest {
         double expectedHigher = 400;
         double expectedLower = 250;
 
-        Assert.assertEquals(expectedHigher, auctioneer.getHighestBid(), 0.00001);
-        Assert.assertEquals(expectedLower, auctioneer.getLowestBid(), 0.00001);
+        assertEquals(expectedHigher, auctioneer.getHighestBid(), 0.00001);
+        assertEquals(expectedLower, auctioneer.getLowestBid(), 0.00001);
 
     }
+
+    @Test
+    public void mustUnderstandAuctionWithOnlyOneBid() {
+        User john = new User("John");
+        Auction auction = new Auction("Playstation 4 novo");
+
+        auction.proposes(new Bid(john, 1000.0));
+
+        Appraiser auctioneer = new Appraiser();
+        auctioneer.evaluates(auction);
+
+        assertEquals(1000.0, auctioneer.getHighestBid(), 0.00001);
+        assertEquals(1000.0, auctioneer.getLowestBid(), 0.00001);
+    }
+
+
 }
