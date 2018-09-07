@@ -1,6 +1,5 @@
 package auction;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,7 +27,7 @@ public class AppraiserTest {
 
     @Test(expected = RuntimeException.class)
     public void mustNotEvaluateAnAuctionWithoutBids() {
-        Auction auction = new CreatorOfAuction().to("Playstation 4").builds();
+        Auction auction = new AuctionBuilder().to("Playstation 4").builds();
 
         auctioneer.evaluates(auction);
     }
@@ -66,7 +65,7 @@ public class AppraiserTest {
     @Test
     public void mustFindTheHighestThreeBids() {
 
-        Auction auction = new CreatorOfAuction().to("Playstation 4")
+        Auction auction = new AuctionBuilder().to("Playstation 4")
             .bid(dan, 100.0)
             .bid(july, 200.0)
             .bid(dan, 300.0)

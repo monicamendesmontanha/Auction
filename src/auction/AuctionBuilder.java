@@ -1,16 +1,16 @@
 package auction;
 
-public class CreatorOfAuction {
+public class AuctionBuilder {
 
 
     private Auction auction;
 
-    public CreatorOfAuction to(String description) {
+    public AuctionBuilder to(String description) {
         this.auction = new Auction(description);
         return this;
     }
 
-    public CreatorOfAuction bid(User user, double value) {
+    public AuctionBuilder bid(User user, double value) {
         auction.proposes(new Bid(user, value));
         return this;
     }
