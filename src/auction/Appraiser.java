@@ -12,6 +12,11 @@ public class Appraiser {
     private List<Bid> highests;
 
     public void evaluates(Auction auction) {
+
+        if(auction.getBids().size() == 0) {
+            throw new RuntimeException("Can not rate an auction without bids!");
+        }
+
         for(Bid bid : auction.getBids()) {
             if (bid.getValue() > highestOffAll) {
                 highestOffAll = bid.getValue();
