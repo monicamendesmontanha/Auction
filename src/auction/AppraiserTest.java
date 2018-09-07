@@ -1,5 +1,6 @@
 package auction;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
@@ -7,6 +8,13 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class AppraiserTest {
+
+    private Appraiser auctioneer;
+
+    @Before
+    public void createsAppraiser() {
+        this.auctioneer = new Appraiser();
+    }
 
     @Test
     public void mustUnderstandBidsInAscendingOrder() {
@@ -20,7 +28,6 @@ public class AppraiserTest {
         auction.proposes(new Bid(july, 300.0));
         auction.proposes(new Bid(rapha, 400.0));
 
-        Appraiser auctioneer = new Appraiser();
         auctioneer.evaluates (auction);
 
         double expectedHigher = 400;
@@ -38,7 +45,6 @@ public class AppraiserTest {
 
         auction.proposes(new Bid(john, 1000.0));
 
-        Appraiser auctioneer = new Appraiser();
         auctioneer.evaluates(auction);
 
         assertEquals(1000.0, auctioneer.getHighestBid(), 0.00001);
@@ -56,7 +62,6 @@ public class AppraiserTest {
         auction.proposes(new Bid (dan, 400.0));
         auction.proposes(new Bid (july, 300.0));
 
-        Appraiser auctioneer = new Appraiser();
         auctioneer.evaluates(auction);
 
         List<Bid> highests = auctioneer.getThreeHighestBids();
